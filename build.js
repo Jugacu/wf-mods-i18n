@@ -356,10 +356,13 @@ const html = `<!DOCTYPE html>
 
   /* ─── Card top bar ──────────────────────────────────────────── */
   .card-topbar {
-    display: flex; align-items: center; justify-content: space-between;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
     padding: 7px 12px 5px;
     background: var(--surface2); border-bottom: 1px solid var(--border);
   }
+  .card-topbar > .polarity-wrap { justify-self: start; }
+  .card-topbar > .rarity-tag    { justify-self: center; }
+  .card-topbar > .drain-pips    { justify-self: end; }
 
   .polarity-wrap { display: flex; align-items: center; gap: 6px; }
   .polarity-wrap svg { width: 17px; height: 17px; flex-shrink: 0; }
