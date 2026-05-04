@@ -1039,7 +1039,7 @@ function scheduleRender() { clearTimeout(renderTimer); renderTimer = setTimeout(
 
 searchEl.addEventListener('input', () => {
   const v = searchEl.value.trim();
-  if (v.length === 0 || v.length >= 5) { state.query = v; scheduleRender(); }
+  if (v.length === 0 || v.length >= 4) { state.query = v; scheduleRender(); }
 });
 rarityEl.addEventListener('change',   () => { state.rarity   = rarityEl.value;   render(); });
 polarityEl.addEventListener('change', () => { state.polarity = polarityEl.value; render(); });
