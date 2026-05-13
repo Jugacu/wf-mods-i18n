@@ -34,6 +34,7 @@ for (let i = 0; i < items.length; i++) {
     baseDrain: item.baseDrain ?? null,
     fusionLimit: item.fusionLimit ?? null,
     imageName: item.imageName || null,
+    wikiaThumbnail: item.wikiaThumbnail || null,
     wikiaUrl: item.wikiaUrl || null,
     tradable: item.tradable || false,
     drops: item.drops || [],
@@ -858,9 +859,12 @@ function rarityClass(r) {
 
 // ── Card HTML ──────────────────────────────────────────────────
 function cardHtml(mod) {
-  const imgSrc = mod.imageName ? CDN + mod.imageName : null;
+  const cdnSrc = mod.imageName ? CDN + mod.imageName : null;
+  const imgSrc = mod.wikiaThumbnail || cdnSrc;
   const imgEl = imgSrc
-    ? '<img src="' + esc(imgSrc) + '" alt="' + esc(mod.name) + '" loading="lazy">'
+    ? '<img src="' + esc(imgSrc) + '" alt="' + esc(mod.name) + '" loading="lazy"'
+      + (mod.wikiaThumbnail && cdnSrc ? ' data-fallback="' + esc(cdnSrc) + '" onerror="this.onerror=null;this.src=this.dataset.fallback"' : '')
+      + '>'
     : '<span class="no-img">No Image</span>';
 
   const rarity = mod.rarity || 'Common';
